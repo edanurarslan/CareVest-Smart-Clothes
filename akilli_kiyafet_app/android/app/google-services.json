@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "300457655065",
+    "project_id": "akilli-kiyafet-uygulamasi",
+    "storage_bucket": "akilli-kiyafet-uygulamasi.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:300457655065:android:2e07bef48ef8191f102388",
+        "android_client_info": {
+          "package_name": "com.example.akilli_kiyafet_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDm1oTyBYgauY-jOpkisayeCntIpDfgWIw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
