@@ -21,6 +21,7 @@ tasks.register<Delete>("clean") {
 }
 
 dependencies {
-    classpath 'com.google.gms:google-services:4.3.10' // En son sürümü kullan
+    classpath("com.google.gms:google-services:4.3.10")
 }
 
+apply(plugin = "com.google.gms.google-services")

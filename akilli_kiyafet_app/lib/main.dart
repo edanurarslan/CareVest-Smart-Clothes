@@ -1,54 +1,18 @@
-/*import 'package:flutter/material.dart';
-import 'screens/home.dart';
-import 'screens/settings.dart';
-import 'screens/about.dart';
-import 'screens/maps.dart';
-
-import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/material.dart';
-void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key}); // Key eklendi ✅
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      initialRoute: '/',
-      routes: {
-        '/': (context) => const HomeScreen(),
-        '/settings': (context) => const SettingsScreen(),
-        '/about': (context) => const AboutScreen(),
-        '/maps': (context) => const MapsScreen(), // Harita sayfası eklendi
-      },
-    );
-  }
-}
-*/
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'firebase_options.dart'; // Firebase yapılandırma dosyası
-
-// Sayfa importları
+import 'firebase_options.dart';
+import 'screens/splash_screen.dart';
 import 'screens/home.dart';
 import 'screens/settings.dart';
-import 'screens/about.dart';
 import 'screens/maps.dart';
+import 'screens/about.dart';
+import 'theme.dart'; // 📌 Tema dosyasını ekledik!
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  
-  // 📌 Firebase'in doğru şekilde başlatıldığından emin olalım
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-
   runApp(const MyApp());
 }
 
@@ -59,16 +23,15 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Akıllı Kıyafet Uygulaması',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      title: 'CareVest',
+      theme: appTheme, // 📌 Tema dosyasını çağırıyoruz
       initialRoute: '/',
       routes: {
-        '/': (context) => const HomeScreen(),
+        '/': (context) => const SplashScreen(),
+        '/home': (context) => const HomeScreen(),
         '/settings': (context) => const SettingsScreen(),
+        '/maps': (context) => const MapsScreen(),
         '/about': (context) => const AboutScreen(),
-        '/maps': (context) => const MapsScreen(), // 🌍 Harita sayfası eklendi
       },
     );
   }

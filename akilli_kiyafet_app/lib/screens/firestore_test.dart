@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'dart:developer'; // 📌 print yerine log() fonksiyonunu kullanacağız
 
 class FirestoreTestScreen extends StatefulWidget {
   const FirestoreTestScreen({super.key});
@@ -17,18 +18,27 @@ class FirestoreTestScreenState extends State<FirestoreTestScreen> {
     String text = _controller.text;
     if (text.isNotEmpty) {
       try {
-        print("📡 Firestore’a mesaj ekleniyor...");
+        log("📡 Firestore’a mesaj ekleniyor...");
         await _firestore.collection('messages').add({
           'text': text,
           'timestamp': FieldValue.serverTimestamp(),
         });
         _controller.clear();
-        print("✅ Mesaj Firestore’a başarıyla eklendi!");
+        log("✅ Mesaj Firestore’a başarıyla eklendi!");
+
+        // UI'yi güncelleyip hata oluşmadığını göstermek için
+        if (mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text("Mesaj başarıyla eklendi! 🚀")),
+          );
+        }
       } catch (e) {
-        print("❌ Firestore Hata: $e");
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text("Hata: Firestore’a veri eklenemedi!")),
-        );
+        log("❌ Firestore Hata: $e");
+        if (mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text("Hata: Firestore’a veri eklenemedi!")),
+          );
+        }
       }
     }
   }
@@ -43,7 +53,7 @@ class FirestoreTestScreenState extends State<FirestoreTestScreen> {
             padding: const EdgeInsets.all(8.0),
             child: TextField(
               controller: _controller,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Mesaj Gir',
                 border: OutlineInputBorder(),
               ),
@@ -64,14 +74,14 @@ class FirestoreTestScreenState extends State<FirestoreTestScreen> {
                   return const Center(child: CircularProgressIndicator());
                 }
                 if (snapshot.hasError) {
-                  print("❌ Firestore Okuma Hatası: ${snapshot.error}");
+                  log("❌ Firestore Okuma Hatası: ${snapshot.error}");
                   return Center(child: Text("Hata: ${snapshot.error}"));
                 }
                 if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-                  print("⚠️ Firestore'da hiç mesaj yok!");
+                  log("⚠️ Firestore'da hiç mesaj yok!");
                   return const Center(child: Text("Henüz mesaj yok!"));
                 }
-                print("✅ Firestore'dan veri alındı, ${snapshot.data!.docs.length} mesaj var.");
+                log("✅ Firestore'dan veri alındı, ${snapshot.data!.docs.length} mesaj var.");
                 return ListView(
                   children: snapshot.data!.docs.map((document) {
                     return Card(

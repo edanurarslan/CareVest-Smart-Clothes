@@ -36,7 +36,7 @@
         <!-- Google Maps API Anahtarı -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyAVFh3TDJgJFJ29fPMqnx2tQU_HsY-DCcw"/>
+            android:value="AIzaSyDZ0xa5ORsFiVyfDqpCXExMJeq3d1zewG8"/>
 
         <!-- Flutter Plugin Tanımlaması -->
         <meta-data
