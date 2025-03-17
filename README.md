@@ -26,14 +26,14 @@ CareVest, kullanıcıların sağlık verilerini anlık olarak takip etmelerini s
 ---
 
 ## 🛠 Kurulum ve Çalıştırma
-### 1️⃣ **Gereksinimler**
+### **Gereksinimler**
 - Flutter SDK ✅
 - Android Studio veya VS Code ✅
 - Firebase Projesi oluşturulmuş ✅
 - Firebase Firestore ve Authentication etkinleştirilmiş ✅
 
 
-### 3️⃣ **Firebase Yapılandırması**
+### **Firebase Yapılandırması**
 1. **Firebase Console'da** yeni bir proje oluşturun: [Firebase Console](https://console.firebase.google.com/)
 2. **Authentication > Oturum Açma Yöntemleri** kısmından **E-posta/Şifre** doğrulamasını açın.
 3. **Firestore Database** kısmından **Veritabanı Kurulumu** yapın ve aşağıdaki formatta veri ekleyin:
@@ -47,18 +47,18 @@ CareVest, kullanıcıların sağlık verilerini anlık olarak takip etmelerini s
    ```
 4. **Google Maps API** ve **Geolocation API** anahtarlarını alın ve `AndroidManifest.xml` dosyanıza ekleyin.
 
-### 4️⃣ **Firebase Konfigürasyonunu Yükleyin**
+### **Firebase Konfigürasyonunu Yükleyin**
 ```sh
 flutterfire configure
 ```
 📌 Bu işlem, `firebase_options.dart` dosyanızı oluşturacaktır.
 
-### 5️⃣ **Bağımlılıkları Yükleyin**
+### **Bağımlılıkları Yükleyin**
 ```sh
 flutter pub get
 ```
 
-### 6️⃣ **Uygulamayı Çalıştırın**
+### **Uygulamayı Çalıştırın**
 #### **📱 Android / iOS Emülatörde Çalıştırma**
 ```sh
 flutter run
