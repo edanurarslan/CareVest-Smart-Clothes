@@ -1,4 +1,4 @@
-# ENG:
+## ENG:
 
 # **CareVest: Smart Clothing Application**
 
@@ -116,7 +116,7 @@ This project is licensed under the **MIT License**.
 
 ---
 
-# TR:
+## TR:
 
 # CareVest: Akıllı Kıyafet Uygulaması
 
