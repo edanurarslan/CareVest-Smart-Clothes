@@ -6,13 +6,18 @@ import 'screens/home.dart';
 import 'screens/settings.dart';
 import 'screens/maps.dart';
 import 'screens/about.dart';
-import 'theme.dart'; // 📌 Tema dosyasını ekledik!
+import 'theme.dart'; // 📌 Tema dosyası
+import 'services/firebase_messaging_service.dart'; // 📌 Bildirim servisi
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+
+  // 📌 Firebase bildirimlerini başlat
+  FirebaseMessagingService().initialize();
+
   runApp(const MyApp());
 }
 
@@ -24,7 +29,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'CareVest',
-      theme: appTheme, // 📌 Tema dosyasını çağırıyoruz
+      theme: appTheme, // 📌 Tema dosyası
       initialRoute: '/',
       routes: {
         '/': (context) => const SplashScreen(),

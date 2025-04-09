@@ -1,51 +1,65 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.akilli_kiyafet_app">
 
-    <!-- Konum izinleri -->
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <!-- 📌 Uygulamanın ihtiyaç duyduğu izinler -->
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
     
+    <!-- 📌 Android 13+ Bildirim izni (Kullanıcıdan manuel onay istenir) -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
     <application
-        android:label="akilli_kiyafet_app"
-        android:name="${applicationName}"
+        android:label="CareVest"
         android:icon="@mipmap/ic_launcher">
 
+        <!-- 📌 Uygulamanın Ana Aktivitesi -->
         <activity
             android:name=".MainActivity"
             android:exported="true"
             android:launchMode="singleTop"
-            android:taskAffinity=""
             android:theme="@style/LaunchTheme"
-            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
-            android:hardwareAccelerated="true"
+            android:configChanges="orientation|screenSize|smallestScreenSize|density|uiMode"
             android:windowSoftInputMode="adjustResize">
-            
+
             <meta-data
               android:name="io.flutter.embedding.android.NormalTheme"
               android:resource="@style/NormalTheme"/>
 
-            <!-- Flutter uygulamasının başlatılması -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
 
-        <!-- Google Maps API Anahtarı -->
+        <!-- 📌 Google Maps API Anahtarı -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyDZ0xa5ORsFiVyfDqpCXExMJeq3d1zewG8"/>
 
-        <!-- Flutter Plugin Tanımlaması -->
+        <!-- 📌 Firebase Cloud Messaging Servisi -->
+        <service
+            android:name=".services.FirebaseMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
+
+        <!-- 📌 Bildirim Kanalları -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_channel_id"
+            android:value="default_channel" />
+
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
-
     </application>
 
-    <!-- Android'in uygulama izinlerini sorgulamasına izin ver -->
+    <!-- 📌 Android'in uygulama izinlerini sorgulamasına izin ver -->
     <queries>
         <intent>
             <action android:name="android.intent.action.PROCESS_TEXT"/>
